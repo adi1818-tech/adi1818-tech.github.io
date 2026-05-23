@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Krishna — Data Scientist & Developer</title>
+<meta name="description" content="Aditya Krishna — Data Scientist, ML Engineer & Full-Stack Developer. CSE @ KIIT University. Built Pixgram, interned at NALCO.">
+<meta property="og:title" content="Aditya Krishna — Data Scientist & Developer">
+<meta property="og:description" content="CSE @ KIIT · Python · ML · Flask · Open to full-time roles.">
+<meta property="og:url" content="https://adi1818-tech.github.io">
+<meta name="author" content="Aditya Krishna">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2306060A'/><text y='72' x='50' text-anchor='middle' font-size='48' font-family='serif' font-weight='900' fill='%2300FF87'>AK</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ───────────────────────────────────────────────────────── */
+:root {
+  --ink:      #06060A;
+  --ink2:     #0E0E16;
+  --paper:    #F0EDE6;
+  --dim:      #33334A;
+  --dimmer:   #1A1A28;
+  --violet:   #7B2FFF;
+  --green:    #00FF87;
+  --magenta:  #FF2D6B;
+  --cyan:     #00E5FF;
+  --border:   rgba(255,255,255,0.055);
+  --border2:  rgba(255,255,255,0.1);
+}
+
+/* ── RESET ────────────────────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'JetBrains Mono',monospace;
+  font-weight:300;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CURSOR ───────────────────────────────────────────────────────── */
+#c-dot,#c-ring{
+  position:fixed;border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .2s,height .2s,background .2s,border-color .3s;
+}
+#c-dot{width:5px;height:5px;background:var(--green);}
+#c-ring{
+  width:38px;height:38px;
+  border:1.5px solid rgba(123,47,255,.55);
+}
+body.h #c-dot{width:7px;height:7px;background:var(--magenta);}
+body.h #c-ring{width:60px;height:60px;border-color:var(--magenta);}
+
+/* ── GRAIN ────────────────────────────────────────────────────────── */
+#grain{
+  position:fixed;inset:0;z-index:9998;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.038;
+  animation:grainAnim .4s steps(1) infinite;
+}
+@keyframes grainAnim{
+  0%{transform:translate(0,0);}20%{transform:translate(-3%,-3%);}
+  40%{transform:translate(3%,3%);}60%{transform:translate(-2%,2%);}
+  80%{transform:translate(2%,-2%);}100%{transform:translate(0,0);}
+}
+
+/* ── NAV ──────────────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:1.6rem 3rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.n-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.4rem;letter-spacing:.12em;
+  color:var(--paper);
+  display:flex;align-items:center;gap:.5rem;
+}
+.n-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.n-links{list-style:none;display:flex;gap:2.5rem;}
+.n-links a{
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--dim);text-decoration:none;
+  transition:color .2s;
+}
+.n-links a:hover{color:var(--paper);}
+
+/* ── HERO ─────────────────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:flex-end;
+  padding:0 3rem 3.5rem;
+  position:relative;overflow:hidden;
+}
+
+/* gradient mesh bg */
+.h-bg{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.h-blob{position:absolute;border-radius:50%;filter:blur(90px);}
+.hb1{width:700px;height:700px;background:rgba(123,47,255,.18);
+     top:-280px;right:-150px;animation:hba 26s ease-in-out infinite;}
+.hb2{width:450px;height:450px;background:rgba(0,229,255,.09);
+     top:30%;right:25%;animation:hba 33s ease-in-out infinite reverse;}
+.hb3{width:350px;height:350px;background:rgba(0,255,135,.08);
+     bottom:5%;left:20%;animation:hba 20s ease-in-out infinite 10s;}
+@keyframes hba{
+  0%,100%{transform:translate(0,0) scale(1);}
+  33%{transform:translate(-50px,35px) scale(1.07);}
+  66%{transform:translate(35px,-45px) scale(.96);}
+}
+
+/* grid overlay */
+.h-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:72px 72px;
+}
+
+.h-inner{position:relative;z-index:1;}
+
+.h-status{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.32rem 1rem;margin-bottom:1.8rem;
+  background:rgba(0,255,135,.07);
+  border:1px solid rgba(0,255,135,.2);border-radius:2px;
+  font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--green);
+  opacity:0;animation:fup .7s .2s ease forwards;
+}
+.s-dot{width:5px;height:5px;border-radius:50%;background:var(--green);
+        animation:blink 1.6s ease-in-out infinite;}
+
+.h-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5.5rem,16vw,17rem);
+  line-height:.88;letter-spacing:.03em;
+  text-transform:uppercase;
+  margin-bottom:2.5rem;
+  opacity:0;animation:fup .7s .4s ease forwards;
+}
+.h-name .l1{display:block;color:var(--paper);}
+.h-name .l2{
+  display:block;position:relative;
+  background:linear-gradient(125deg,var(--violet) 0%,var(--cyan) 45%,var(--green) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+/* glitch */
+.h-name .l2::before,.h-name .l2::after{
+  content:'KRISHNA';position:absolute;left:0;top:0;
+  background:linear-gradient(125deg,var(--violet),var(--cyan),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.h-name .l2::before{animation:gl1 5s infinite;clip-path:polygon(0 22%,100% 22%,100% 42%,0 42%);opacity:.75;}
+.h-name .l2::after {animation:gl2 5s infinite;clip-path:polygon(0 62%,100% 62%,100% 80%,0 80%);opacity:.75;}
+@keyframes gl1{
+  0%,88%,100%{transform:translate(0,0);opacity:0;}
+  90%{transform:translate(-5px,1px);opacity:.8;}
+  92%{transform:translate(5px,-1px);opacity:.8;}
+  94%{transform:translate(-2px,0);opacity:.8;}
+  96%{transform:translate(0,0);opacity:0;}
+}
+@keyframes gl2{
+  0%,85%,100%{transform:translate(0,0);opacity:0;}
+  87%{transform:translate(5px,2px);opacity:.8;}
+  89%{transform:translate(-5px,-2px);opacity:.8;}
+  91%{transform:translate(2px,0);opacity:.8;}
+  93%{transform:translate(0,0);opacity:0;}
+}
+
+.h-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  flex-wrap:wrap;gap:2rem;
+  opacity:0;animation:fup .7s .65s ease forwards;
+}
+.h-tag{
+  font-size:.82rem;color:var(--dim);line-height:1.7;max-width:400px;
+}
+.h-tag b{color:var(--paper);font-weight:500;}
+.h-cta{display:flex;gap:.7rem;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.5rem 1.1rem;
+  border:1px solid var(--border);border-radius:2px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;letter-spacing:.09em;
+  color:var(--dim);text-decoration:none;
+  transition:all .25s;
+}
+.btn:hover{border-color:var(--green);color:var(--green);background:rgba(0,255,135,.05);}
+.btn-p{
+  background:var(--violet);border-color:var(--violet);color:var(--paper);
+}
+.btn-p:hover{background:var(--green);border-color:var(--green);color:var(--ink);}
+
+/* scroll indicator */
+.h-scroll{
+  position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  color:var(--dim);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;
+  opacity:0;animation:fup .7s 1s ease forwards;
+}
+.h-scroll-line{
+  width:1px;height:44px;
+  background:linear-gradient(to bottom,var(--dim),transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+/* ── TICKER ───────────────────────────────────────────────────────── */
+.ticker{
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:1.6rem 0;overflow:hidden;
+  position:relative;
+}
+.t-fade-l,.t-fade-r{
+  position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;
+}
+.t-fade-l{left:0;background:linear-gradient(to right,var(--ink),transparent);}
+.t-fade-r{right:0;background:linear-gradient(to left,var(--ink),transparent);}
+.t-row{display:flex;gap:0;white-space:nowrap;margin-bottom:.6rem;}
+.t-row:last-child{margin-bottom:0;}
+.t-inner{display:flex;gap:0;animation:tLeft 28s linear infinite;}
+.t-inner-r{animation:tRight 34s linear infinite;}
+@keyframes tLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes tRight{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+.spill{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.38rem 1.2rem;margin:0 .4rem;
+  border:1px solid var(--border);border-radius:2px;
+  font-size:.72rem;letter-spacing:.08em;color:var(--dim);
+  transition:all .2s;cursor:none;white-space:nowrap;
+}
+.spill:hover{border-color:var(--violet);color:var(--paper);background:rgba(123,47,255,.08);}
+.sd{width:4px;height:4px;border-radius:50%;flex-shrink:0;}
+.sd-v{background:var(--violet);}
+.sd-g{background:var(--green);}
+.sd-c{background:var(--cyan);}
+.sd-m{background:var(--magenta);}
+
+/* ── SECTION COMMONS ──────────────────────────────────────────────── */
+.sec{padding:8rem 3rem;position:relative;border-top:1px solid var(--border);}
+.sec-wm{
+  position:absolute;font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(8rem,18vw,22rem);letter-spacing:.02em;
+  color:rgba(255,255,255,.018);text-transform:uppercase;
+  pointer-events:none;user-select:none;line-height:1;
+  top:1rem;left:0;
+}
+.sec-meta{font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:var(--violet);margin-bottom:.6rem;}
+.sec-h{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.8rem,5.5vw,5rem);
+  letter-spacing:.04em;text-transform:uppercase;line-height:.95;
+  margin-bottom:4.5rem;
+}
+
+/* ── PROJECTS ─────────────────────────────────────────────────────── */
+.proj{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--border);padding:3rem 0;
+  position:relative;overflow:hidden;
+  transition:background .35s;
+}
+.proj::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(123,47,255,.04),rgba(0,229,255,.04));
+  opacity:0;transition:opacity .4s;
+}
+.proj:hover::before{opacity:1;}
+.proj::after{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--violet),var(--cyan),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.proj:hover::after{opacity:.5;}
+
+.p-left{padding-right:4rem;}
+.p-idx{font-size:.65rem;letter-spacing:.25em;color:var(--dim);margin-bottom:.8rem;}
+.p-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.2rem,5vw,4rem);
+  letter-spacing:.04em;
+  color:var(--paper);
+  transition:all .3s;
+  margin-bottom:.4rem;line-height:1;
+}
+.proj:hover .p-name{
+  background:linear-gradient(125deg,var(--violet),var(--cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.p-cat{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);}
+.p-right{display:flex;flex-direction:column;justify-content:space-between;}
+.p-desc{
+  font-family:'DM Serif Display',serif;
+  font-size:1rem;color:rgba(240,237,230,.55);
+  line-height:1.75;margin-bottom:2rem;font-weight:400;
+}
+.p-footer{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;}
+.p-tags{display:flex;flex-wrap:wrap;gap:.35rem;}
+.ptag{
+  padding:.18rem .55rem;
+  border:1px solid var(--border);border-radius:2px;
+  font-size:.62rem;letter-spacing:.08em;color:var(--dim);
+}
+.p-links{display:flex;gap:1rem;}
+.plink{
+  font-size:.72rem;letter-spacing:.06em;
+  color:var(--paper);text-decoration:none;
+  border-bottom:1px solid var(--violet);padding-bottom:1px;
+  transition:color .2s,border-color .2s;
+}
+.plink:hover{color:var(--violet);}
+
+/* ── EXPERIENCE ───────────────────────────────────────────────────── */
+.exp-item{
+  display:grid;grid-template-columns:90px 1fr 160px;
+  gap:3.5rem;align-items:start;
+  padding:3rem 0;border-top:1px solid var(--border);
+}
+.e-num{font-size:.65rem;letter-spacing:.22em;color:var(--violet);padding-top:.3rem;}
+.e-role{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.8rem,3.5vw,3rem);
+  letter-spacing:.04em;margin-bottom:.4rem;line-height:1;
+}
+.e-co{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:1.6rem;}
+.e-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.e-list li{
+  display:flex;gap:.9rem;
+  font-size:.82rem;color:rgba(240,237,230,.48);line-height:1.7;
+}
+.e-list li::before{content:'—';color:var(--violet);flex-shrink:0;}
+.e-date{
+  font-size:.68rem;letter-spacing:.08em;color:var(--dim);
+  text-align:right;padding-top:.3rem;line-height:1.9;
+}
+
+/* ── EDUCATION ────────────────────────────────────────────────────── */
+.edu-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--border);
+  margin-top:4rem;
+}
+.edu-cell{
+  padding:2.8rem 2.5rem;
+  border-right:1px solid var(--border);
+  position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.edu-cell:last-child{border-right:none;}
+.edu-cell:hover{background:rgba(255,255,255,.018);}
+.edu-cell::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
+.edu-cell:nth-child(1)::after{background:linear-gradient(90deg,var(--violet),var(--cyan));}
+.edu-cell:nth-child(2)::after{background:linear-gradient(90deg,var(--green),var(--cyan));}
+.edu-cell:nth-child(3)::after{background:linear-gradient(90deg,var(--magenta),var(--violet));}
+.edu-cell:hover::after{transform:scaleX(1);}
+.edu-score{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,7vw,6.5rem);
+  letter-spacing:-.01em;line-height:1;margin-bottom:1rem;
+}
+.es1{background:linear-gradient(125deg,var(--violet),var(--cyan));
+     -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.es2{background:linear-gradient(125deg,var(--green),var(--cyan));
+     -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.es3{background:linear-gradient(125deg,var(--magenta),var(--violet));
+     -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.edu-deg{font-size:.85rem;font-weight:500;color:var(--paper);margin-bottom:.3rem;line-height:1.4;}
+.edu-sch{font-size:.7rem;letter-spacing:.04em;color:var(--dim);margin-bottom:.2rem;}
+.edu-yr{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);}
+
+/* ── FOOTER ───────────────────────────────────────────────────────── */
+footer{
+  padding:2.5rem 3rem;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+}
+.f-brand{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;letter-spacing:.08em;
+}
+.f-brand span{
+  background:linear-gradient(125deg,var(--violet),var(--cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.f-info{font-size:.65rem;letter-spacing:.08em;color:var(--dim);line-height:1.8;text-align:right;}
+
+/* ── ANIMATIONS ───────────────────────────────────────────────────── */
+@keyframes fup{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.r{opacity:0;transform:translateY(38px);transition:opacity .65s ease,transform .65s ease;}
+.r.v{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:.08s;}.rd2{transition-delay:.16s;}.rd3{transition-delay:.24s;}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────────── */
+@media(max-width:800px){
+  nav{padding:1.4rem 1.5rem;}
+  .n-links{display:none;}
+  .hero{padding:0 1.5rem 3rem;}
+  .sec{padding:5rem 1.5rem;}
+  footer{padding:2rem 1.5rem;}
+  .proj{grid-template-columns:1fr;}
+  .p-left{padding-right:0;}
+  .exp-item{grid-template-columns:1fr;gap:1rem;}
+  .e-date{text-align:left;}
+  .edu-row{grid-template-columns:1fr;}
+  .edu-cell{border-right:none;border-bottom:1px solid var(--border);}
+  .edu-cell:last-child{border-bottom:none;}
+}
+</style>
+</head>
+<body>
+
+<div id="c-dot"></div>
+<div id="c-ring"></div>
+<div id="grain"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="n-logo"><span class="n-dot"></span>AK.DEV</div>
+  <ul class="n-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="h-bg">
+    <div class="h-blob hb1"></div>
+    <div class="h-blob hb2"></div>
+    <div class="h-blob hb3"></div>
+  </div>
+  <div class="h-grid"></div>
+  <div class="h-inner">
+    <div class="h-status"><span class="s-dot"></span>Open to full-time opportunities</div>
+    <h1 class="h-name">
+      <span class="l1">ADITYA</span>
+      <span class="l2">KRISHNA</span>
+    </h1>
+    <div class="h-bottom">
+      <p class="h-tag">
+        <b>Data Scientist · ML Engineer · Full-Stack Dev</b><br>
+        CSE @ KIIT University · Building at the intersection<br>
+        of data, machine learning &amp; elegant software.
+      </p>
+      <div class="h-cta">
+        <a href="mailto:adityakrishna11171@gmail.com" class="btn">✉ Email</a>
+        <a href="https://www.linkedin.com/in/adityakrishna18/" target="_blank" class="btn">↗ LinkedIn</a>
+        <a href="https://github.com/adi1818-tech" target="_blank" class="btn">⌥ GitHub</a>
+        <a href="tel:+917848901772" class="btn btn-p">📞 Call</a>
+      </div>
+    </div>
+  </div>
+  <div class="h-scroll"><div class="h-scroll-line"></div>Scroll</div>
+</section>
+
+<!-- SKILLS TICKER -->
+<div class="ticker" id="skills">
+  <div class="t-fade-l"></div>
+  <div class="t-fade-r"></div>
+  <div class="t-row"><div class="t-inner" id="tk1"></div></div>
+  <div class="t-row"><div class="t-inner t-inner-r" id="tk2"></div></div>
+</div>
+
+<!-- PROJECTS -->
+<section class="sec" id="projects">
+  <div class="sec-wm">Work</div>
+  <div class="r">
+    <p class="sec-meta">02 · Selected Work</p>
+    <h2 class="sec-h">Projects</h2>
+  </div>
+  <div class="proj r rd1">
+    <div class="p-left">
+      <p class="p-idx">[ 01 ]</p>
+      <h3 class="p-name">PIXGRAM</h3>
+      <p class="p-cat">Full-Stack · Web Platform</p>
+    </div>
+    <div class="p-right">
+      <p class="p-desc">
+        A competitive photography platform with weekly challenges, community voting,
+        leaderboards, and skill-tagged portfolio profiles. Custom dark editorial UI
+        built from scratch and deployed live with GitHub CI/CD integration.
+      </p>
+      <div class="p-footer">
+        <div class="p-tags">
+          <span class="ptag">Python</span><span class="ptag">Flask</span>
+          <span class="ptag">Jinja2</span><span class="ptag">JavaScript</span>
+          <span class="ptag">REST APIs</span><span class="ptag">Render</span>
+          <span class="ptag">CI/CD</span><span class="ptag">Session Auth</span>
+        </div>
+        <div class="p-links">
+          <a href="https://pixgram-l48s.onrender.com" target="_blank" class="plink">Live ↗</a>
+          <a href="https://github.com/adi1818-tech/pixgram" target="_blank" class="plink">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="experience">
+  <div class="sec-wm">Work</div>
+  <div class="r">
+    <p class="sec-meta">03 · Career</p>
+    <h2 class="sec-h">Experience</h2>
+  </div>
+  <div class="exp-item r rd1">
+    <p class="e-num">01 ——</p>
+    <div>
+      <h3 class="e-role">Systems Intern</h3>
+      <p class="e-co">NALCO · National Aluminium Company · Navratna PSU</p>
+      <ul class="e-list">
+        <li>Enterprise-level IT infrastructure exposure under the Systems &amp; IT branch of one of India's leading PSUs.</li>
+        <li>Monitored and maintained networks, hardware, and software systems across multiple departments.</li>
+        <li>Supported day-to-day IT operations — technology deployment, network admin, corporate IT governance.</li>
+        <li>Gained practical understanding of large-scale industrial IT management with thousands of employees.</li>
+      </ul>
+    </div>
+    <div class="e-date">Apr 2026<br>—<br>Jun 2026<br><br>Bhubaneswar<br>Odisha</div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="sec" id="education">
+  <div class="r">
+    <p class="sec-meta">04 · Academic</p>
+    <h2 class="sec-h">Education</h2>
+  </div>
+  <div class="edu-row">
+    <div class="edu-cell r rd1">
+      <p class="edu-score es1">7.9</p>
+      <p class="edu-deg">B.Tech — Computer Science &amp; Engineering</p>
+      <p class="edu-sch">KIIT University · Bhubaneswar, Odisha</p>
+      <p class="edu-yr">Expected 2027 · CGPA / 10</p>
+    </div>
+    <div class="edu-cell r rd2">
+      <p class="edu-score es2">85%</p>
+      <p class="edu-deg">Class XII — Science (PCM)</p>
+      <p class="edu-sch">DAV Public School, CSPUR · Bhubaneswar</p>
+      <p class="edu-yr">2023 · CBSE Board</p>
+    </div>
+    <div class="edu-cell r rd3">
+      <p class="edu-score es3">91%</p>
+      <p class="edu-deg">Class X — Secondary Education</p>
+      <p class="edu-sch">DAV Public School, CSPUR · Bhubaneswar</p>
+      <p class="edu-yr">2021 · CBSE Board</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-brand">ADITYA <span>KRISHNA</span></div>
+  <div class="f-info">
+    adityakrishna11171@gmail.com · +91 78489 01772<br>
+    Bhubaneswar, Odisha · India · 2026
+  </div>
+</footer>
+
+<script>
+/* ── CURSOR ─────────────────────────────────────────── */
+const dot=document.getElementById('c-dot'),ring=document.getElementById('c-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+(function animR(){
+  rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animR);
+})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('h'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('h'));
+});
+
+/* ── TICKER ─────────────────────────────────────────── */
+const r1=[
+  ['Python','sd-v'],['SQL','sd-c'],['NumPy','sd-g'],['Pandas','sd-g'],
+  ['scikit-learn','sd-g'],['Matplotlib','sd-v'],['Seaborn','sd-c'],
+  ['Flask','sd-m'],['Jinja2','sd-m'],['REST APIs','sd-v'],
+  ['JavaScript','sd-c'],['HTML5','sd-v'],['CSS3','sd-m'],
+];
+const r2=[
+  ['Git','sd-m'],['GitHub','sd-v'],['Docker','sd-c'],['Jupyter','sd-g'],
+  ['Render','sd-v'],['VS Code','sd-c'],['Data Analysis','sd-g'],
+  ['Feature Engineering','sd-m'],['CI/CD','sd-v'],['Web Scraping','sd-g'],
+  ['Session Auth','sd-c'],['File Handling','sd-m'],['SQL Queries','sd-v'],
+];
+function buildTicker(el,skills){
+  const all=[...skills,...skills,...skills];
+  el.innerHTML=all.map(([n,c])=>
+    `<span class="spill"><span class="sd ${c}"></span>${n}</span>`
+  ).join('');
+}
+buildTicker(document.getElementById('tk1'),r1);
+buildTicker(document.getElementById('tk2'),r2);
+
+/* ── SCROLL REVEAL ──────────────────────────────────── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('v'); });
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.r').forEach(el=>io.observe(el));
+
+/* ── NAV HIGHLIGHT ──────────────────────────────────── */
+const secs=document.querySelectorAll('section[id],div[id]');
+const nls=document.querySelectorAll('.n-links a');
+const nio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      nls.forEach(a=>{
+        a.style.color=a.getAttribute('href')==='#'+e.target.id
+          ?'var(--paper)':'';
+      });
+    }
+  });
+},{threshold:.4});
+secs.forEach(s=>nio.observe(s));
+</script>
+</body>
+</html>
